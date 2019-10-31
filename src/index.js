@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 const inquirer = require('inquirer');
 const { addTask, listTasks }  = require('./store');
@@ -7,7 +8,7 @@ const chalk = require("chalk");
 
 const prog = require('caporal');
 prog
-  .version('1.0.0')
+  .version('0.1.0')
   .command('add', 'Add a new task')
   .argument('[date]', 'Date where task was done', /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/, moment().format('Y-M-D'))
   .action(function(args, options, logger) {
@@ -41,8 +42,7 @@ prog
     tasks.then(result => {
       const output = new Table({
         head: ['Ticket #', 'Description', 'Project'],
-        // style:{border:[],header:[]},
-        colWidths:[10,50,10],
+        colWidths:[13,50,13],
         wordWrap:true
       });
   

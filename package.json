@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Standup summary ",
   "main": "src/index.js",
+  "bin": {
+    "doneapp": "./src/index.js"
+  },
   "dependencies": {
     "@google-cloud/firestore": "^2.5.0",
     "caporal": "^1.3.0",

@@ -30,7 +30,6 @@ const addTask = async function (note, date = null) {
 const listTasks = async function (date) {
   const startOfDay = moment (date).startOf ('day').unix ();
   const endOfDay = moment (date).endOf ('day').unix ();
-  console.log (`Start of day = ${startOfDay} - End of day = ${endOfDay}`);
   const todayTasks = db
     .collection ('tasks')
     .where ('timestamp', '<=', endOfDay)
