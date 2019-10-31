@@ -2,12 +2,14 @@
 const inquirer = require('inquirer');
 const { addTask, listTasks }  = require('./store');
 const Table = require("cli-table3");
+const moment = require("moment");
+const chalk = require("chalk");
 
 const prog = require('caporal');
 prog
   .version('1.0.0')
   .command('add', 'Add a new task')
-  .argument('[date]', 'Date where task was done', /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/, null)
+  .argument('[date]', 'Date where task was done', /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/, moment().format('Y-M-D'))
   .action(function(args, options, logger) {
     const questions = [
       {
@@ -19,7 +21,12 @@ prog
         type: 'input',
         name: 'description',
         message: "Please describe the work.",
-      }
+      },
+      {
+        type: 'input',
+        name: 'project',
+        message: "Which project?",
+      },
     ];
     
     inquirer.prompt(questions).then(answers => {
@@ -33,12 +40,18 @@ prog
     const tasks =  listTasks(args['date']);
     tasks.then(result => {
       const output = new Table({
-        head: ['Ticket Number', 'Description'],
-        colWidths: ['100', '300']
+        head: ['Ticket #', 'Description', 'Project'],
+        // style:{border:[],header:[]},
+        colWidths:[10,50,10],
+        wordWrap:true
       });
   
       result.forEach(element => {
-        output.push([element.data().reference, element.data().description]);
+        output.push([
+          chalk.cyan(element.data().reference), 
+          element.data().description, 
+          chalk.red(element.data().project)
+        ]);
       });
 
       console.log(output.toString());
