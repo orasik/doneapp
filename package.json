@@ -9,6 +9,7 @@
     "dotenv": "^8.2.0",
     "firebase-admin": "^8.6.1",
     "inquirer": "^7.0.0",
+    "moment": "^2.24.0",
     "uuid": "^3.3.3"
   },
   "devDependencies": {},

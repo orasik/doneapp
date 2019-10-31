@@ -6,10 +6,8 @@ const prog = require('caporal');
 prog
   .version('1.0.0')
   .command('add', 'Add a new task')
-  .argument('[date]', 'Date where task was done', /^dev|staging|production|local$/, 'local')
+  .argument('[date]', 'Date where task was done', /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/, null)
   .action(function(args, options, logger) {
-    console.log(args);
-    console.log(options);
     const questions = [
       {
         type: 'input',
@@ -24,10 +22,7 @@ prog
     ];
     
     inquirer.prompt(questions).then(answers => {
-      answers['timestamp'] = new Date().getTime()
-      answers['category'] = 'work'
-    
-      addTask(answers);
+      addTask(answers, args['date']);
     });
   })
   
