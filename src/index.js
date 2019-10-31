@@ -1,7 +1,8 @@
 'use strict';
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
+const { addTask, listTasks }  = require('./store');
 
-var questions = [
+const questions = [
   {
     type: 'input',
     name: 'reference',
@@ -15,8 +16,9 @@ var questions = [
 ];
 
 inquirer.prompt(questions).then(answers => {
-  console.log('\nOrder receipt:');
-  answers['timestamp'] = new Date()
+  answers['timestamp'] = new Date().getTime()
   answers['category'] = 'work'
-  console.log(JSON.stringify(answers, null, '  '));
+
+  addTask(answers);
+  listTasks('2019-10-27');
 });

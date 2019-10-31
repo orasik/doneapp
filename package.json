@@ -4,7 +4,11 @@
   "description": "Standup summary ",
   "main": "src/index.js",
   "dependencies": {
-    "inquirer": "^7.0.0"
+    "@google-cloud/firestore": "^2.5.0",
+    "dotenv": "^8.2.0",
+    "firebase-admin": "^8.6.1",
+    "inquirer": "^7.0.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {},
   "scripts": {
