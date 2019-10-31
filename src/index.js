@@ -1,6 +1,7 @@
 'use strict';
 const inquirer = require('inquirer');
 const { addTask, listTasks }  = require('./store');
+const Table = require("cli-table3");
 
 const prog = require('caporal');
 prog
@@ -29,7 +30,19 @@ prog
   .command('list', 'List tasks done today')
   .argument('[date]', 'List tasks done on that date')
   .action((args, options, logger) => {
-    listTasks(args['date']);
+    const tasks =  listTasks(args['date']);
+    tasks.then(result => {
+      const output = new Table({
+        head: ['Ticket Number', 'Description'],
+        colWidths: ['100', '300']
+      });
+  
+      result.forEach(element => {
+        output.push([element.data().reference, element.data().description]);
+      });
+
+      console.log(output.toString());
+    });
   })
   ;
 
