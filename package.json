@@ -1,7 +1,7 @@
 {
   "name": "doneapp",
-  "version": "1.0.0",
-  "description": "Standup summary ",
+  "version": "0.1.0",
+  "description": "Done App is a personal project to track tasks done throughout the day",
   "main": "src/index.js",
   "bin": {
     "doneapp": "./src/index.js"
