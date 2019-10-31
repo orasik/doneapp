@@ -37,23 +37,21 @@ prog
   
   .command('list', 'List tasks done today')
   .argument('[date]', 'List tasks done on that date')
-  .action((args, options, logger) => {
-    const tasks =  listTasks(args['date']);
-    tasks.then(result => {
+  .action(async (args, options, logger) => {
+    const tasks =  await listTasks(args['date']);
       const output = new Table({
         head: ['Ticket #', 'Description', 'Project'],
         colWidths:[13,50,13],
         wordWrap:true
       });
   
-      result.forEach(element => {
+      tasks.forEach(element => {
         output.push([
           chalk.cyan(element.data().reference), 
           element.data().description, 
           chalk.red(element.data().project)
         ]);
-      });
-
+        
       console.log(output.toString());
     });
   })
