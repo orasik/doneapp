@@ -5,14 +5,8 @@ const { addTask, listTasks }  = require('./store');
 const prog = require('caporal');
 prog
   .version('1.0.0')
-  // you specify arguments using .argument()
-  // 'app' is required, 'env' is optional
   .command('add', 'Add a new task')
-  // .argument('<app>', 'App to deploy', /^myapp|their-app$/)
   .argument('[date]', 'Date where task was done', /^dev|staging|production|local$/, 'local')
-  // you specify options using .option()
-  // if --tail is passed, its value is required
-  // .option('--tail <lines>', 'Tail <lines> lines of logs after deploy', prog.INT)
   .action(function(args, options, logger) {
     console.log(args);
     console.log(options);
