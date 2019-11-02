@@ -27,4 +27,3 @@ Once you signup, you need to create the firestore database and download your ser
 
 ## TODO
 - Add images on how to signup to firebase and download the service account file.
-- Initialisation argument to initialise the app and save values to .env file.
