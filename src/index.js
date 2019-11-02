@@ -71,17 +71,17 @@ prog
       {
         type: 'input',
         name: 'serviceAccountFile',
-        message: 'Firebase service account file location (in your local system)',
+        message: '➡️  Firebase service account file location (in your local system)',
       },
       {
         type: 'input',
         name: 'databaseURL',
-        message: 'Firestore database url',
+        message: '➡️  Firestore database url',
       },
       {
         type: 'input',
         name: 'collection',
-        message: 'Database collection name',
+        message: '➡️  Database collection name',
       },
     ];
 
