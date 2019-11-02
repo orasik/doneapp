@@ -55,6 +55,31 @@ prog
       console.log(output.toString());
     });
   })
-  ;
+
+  .command('init', 'intial setup to save config data')
+  .action(async (args, options, logger) => {
+    const questions = [
+      {
+        type: 'input',
+        name: 'serviceAccountFile',
+        message: 'Firebase service account file location (in your local system)',
+      },
+      {
+        type: 'input',
+        name: 'databaseURL',
+        message: "Firestore database url",
+      },
+      {
+        type: 'input',
+        name: 'collection',
+        message: "Database collection name",
+      },
+    ];
+    
+    inquirer.prompt(questions).then(answers => {
+      addTask(answers, args['date']);
+    });
+
+  })
 
 prog.parse(process.argv);
