@@ -6,12 +6,21 @@
   "bin": {
     "doneapp": "./src/index.js"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": [
+      "eslint --fix src",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@google-cloud/firestore": "^2.5.0",
     "caporal": "^1.3.0",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
     "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "firebase-admin": "^8.6.1",
     "inquirer": "^7.0.0",
     "moment": "^2.24.0",
@@ -19,7 +28,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
