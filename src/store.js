@@ -30,7 +30,7 @@ const listTasks = async (date) => {
   const startOfDay = moment(date).startOf('day').unix();
   const endOfDay = moment(date).endOf('day').unix();
   const todayTasks = db
-    .collection('tasks')
+    .collection(collection)
     .where('timestamp', '<=', endOfDay)
     .where('timestamp', '>=', startOfDay);
   try {
